@@ -1,0 +1,31 @@
+services:
+  mysql:
+    image: mysql:8.4
+    restart: no
+    container_name: mysql-ic
+    environment:
+      - MYSQL_DATABASE=db_cadastro_ans
+      - MYSQL_ROOT_PASSWORD=1234
+    ports: 
+      - '3309:3306'
+    networks: 
+      - ic-network
+    volumes:
+      - mysql-ic:/var/lib/mysql  
+      - ./Relatorio_cadop.csv:/var/lib/mysql-files/Relatorio_cadop.csv
+      - ./1T2023.csv:/var/lib/mysql-files/1T2023.csv
+      - ./2t2023.csv:/var/lib/mysql-files/2t2023.csv
+      - ./3T2023.csv:/var/lib/mysql-files/3T2023.csv
+      - ./4T2023.csv:/var/lib/mysql-files/4T2023.csv
+      - ./1T2024.csv:/var/lib/mysql-files/1T2024.csv
+      - ./2T2024.csv:/var/lib/mysql-files/2T2024.csv
+      - ./3T2024.csv:/var/lib/mysql-files/3T2024.csv
+      - ./4T2024.csv:/var/lib/mysql-files/4T2024.csv
+    command: --local-infile=1 
+    
+networks:
+  ic-network:
+    driver: bridge
+
+volumes:
+  mysql-ic:
