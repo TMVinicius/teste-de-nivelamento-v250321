@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "64a00619-5e30-4655-94b7-826a003502c5",
+		"name": "Collection-IC-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "42115975"
+	},
+	"item": [
+		{
+			"name": "Get All",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/pesquisar?q",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"pesquisar"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": null
+						}
+					]
+				},
+				"description": "Retorna todas as empresas em ordem crescente conforme o cnpj\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Resultado Relevante",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/pesquisar?q=BRA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"pesquisar"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "BRA"
+						}
+					]
+				},
+				"description": "Retorna resultados mais próximos de BRA"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Exception 404 Cadastro Não encontrado",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/pesquisar?q=aaa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"pesquisar"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "aaa"
+						}
+					]
+				},
+				"description": "Espera o retorno \"message\": \"Nenhum resultado encontrado\""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Exception 404 Rota",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/pesquisa?q=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"pesquisa"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": ""
+						}
+					]
+				},
+				"description": "Espera retorno de \"error\": \"Rota não encontrada\""
+			},
+			"response": []
+		}
+	]
+}

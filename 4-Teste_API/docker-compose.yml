@@ -1,0 +1,24 @@
+services:
+  mysql:
+    image: mysql:8.4
+    restart: no
+    container_name: mysql-ic-api
+    environment:
+      - MYSQL_DATABASE=db_cadastro_ans
+      - MYSQL_ROOT_PASSWORD=1234
+    ports: 
+      - '3309:3306'
+    networks: 
+      - ic-network-api
+    volumes:
+      - mysql-ic-api:/var/lib/mysql  
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./Relatorio_cadop.csv:/var/lib/mysql-files/Relatorio_cadop.csv
+    command: --local-infile=1 
+    
+networks:
+  ic-network-api:
+    driver: bridge
+
+volumes:
+  mysql-ic-api:
